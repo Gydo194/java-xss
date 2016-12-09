@@ -2,3 +2,9 @@ Put event.js and event.txt into your web server,
 compile the xss.java (on most systems: javac xss.java)
 (modify the file path (default: /var/www/html/event.txt) in xss.java before compiling.)
 NOTE: event.js is under development, use event_working.js if event.js doesn't work.
+i'll throw it in a commit message if it's broken.
+
+Oh by the way, the default file paths are for debian linux. tough this can run on any OS, just moduify the file paths.
+
+One good day I'll make a install script.
+
