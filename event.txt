@@ -1,1 +1,2 @@
-alert("You have been Hacked.");
+var postdata = "Post_DATA"
+postback();

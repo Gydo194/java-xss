@@ -1,4 +1,4 @@
-var postback = "";
+var postdata = "default_postback";
 function main() {
 
 
@@ -6,15 +6,15 @@ var script = document.createElement("script");
 script.src = "/event.txt";
 script.type = "application/javascript";
 document.head.appendChild( script );
-if(postback != null) {
-	httprequest(postback);
-};
+
 };
 
-function httprequest(value) {
+function postback() {
+	var posturl = "/post.php?postback=" + postdata;
+	console.log(posturl);
 	var xmlHTTP = new XMLHttpRequest();
-	xmlHTTP.open("POST", "/post.php", false);
-	xmlHTTP.send(value);
+	xmlHTTP.open("GET", posturl, false);
+	xmlHTTP.send();
 	return 0;
 };
 
