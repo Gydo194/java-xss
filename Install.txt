@@ -4,7 +4,8 @@ compile the xss.java (on most systems: javac xss.java)
 NOTE: event.js is under development, use event_working.js if event.js doesn't work.
 i'll throw it in a commit message if it's broken.
 
-Oh by the way, the default file paths are for debian linux. tough this can run on any OS, just moduify the file paths.
+Oh by the way, the default file paths are for debian linux. I've made a separate branch for Mac OS X (using XAMPP)
+see the install.txt there for more details.
 
 One good day I'll make a install script.
 
