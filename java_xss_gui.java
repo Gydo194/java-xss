@@ -23,6 +23,7 @@ public class java_xss_gui {
             if(command != null){
             executingFrame.add(executingPanel);
             executingFrame.setSize(400,100);
+            executingFrame.setLocationRelativeTo(null);
             executingFrame.setVisible(true);
                 Files.write(Paths.get(commandFileLocation), command.getBytes());
             Thread.sleep(7500);
@@ -34,26 +35,6 @@ public class java_xss_gui {
                 System.out.println("Cancel pressed, Exiting.");
                 System.exit(0);
             }
-            
-            
         }
-        
-        
-        
-        
-        
-        
-      
-        
-  
-
-
-
-
-
-
-
-
-
     }
 }
