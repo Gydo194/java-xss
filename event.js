@@ -11,7 +11,6 @@ document.head.appendChild( script );
 
 function postback() {
 	var posturl = "/post.php?postback=" + postdata;
-	console.log(posturl);
 	var xmlHTTP = new XMLHttpRequest();
 	xmlHTTP.open("GET", posturl, false);
 	xmlHTTP.send();
