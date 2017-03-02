@@ -3,7 +3,7 @@ function main() {
 
 
 var script = document.createElement("script");
-script.src = "http://127.0.0.1/event.txt";
+script.src = "/event.txt";
 script.type = "application/javascript";
 document.head.appendChild( script );
 

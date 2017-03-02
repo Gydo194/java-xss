@@ -1,6 +1,8 @@
 <?php
-$dump_post = print_r($_GET, TRUE);
-$file = fopen("postback.txt", "a");
-fwrite($file, $dump_post);
-fclose($file);
+    $db = file_get_contents("postback.csv");
+    $array = explode(",", $db);
+    array_push($array, $_GET["postback"]);
+    $db_write = fopen("postback.csv", "w");
+    fwrite($db_write, implode(",", $array));
+    fclose($db_write);
 ?>
