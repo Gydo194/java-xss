@@ -74,7 +74,7 @@ public class Java_XSS implements Runnable {
     
     
     public static void main(String args[] ) {
-        ImageIcon javaXssIcon = new ImageIcon("Java_XSS/JX.png");
+        
         
         JFrame wdLocationFrame = new JFrame("Java XSS:Working Directory");
         String wd = JOptionPane.showInputDialog(wdLocationFrame, "Enter working directory path: ");
@@ -112,17 +112,10 @@ public class Java_XSS implements Runnable {
             while(true){
         
         JFrame commandInputDialog = new JFrame("Java XSS");
-                commandInputDialog.setDefaultLookAndFeelDecorated(true);
-          
-        
+        String command = JOptionPane.showInputDialog(commandInputDialog,"Enter command");
                 
                 
-                
-                
-        String command = JOptionPane.showInputDialog(commandInputDialog,"Enter command", javaXssIcon);
-        
-        
-                
+               
         if(command == null){
             System.out.println("Cancel pressed, exiting...");
             System.exit(0);

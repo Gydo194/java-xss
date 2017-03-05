@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.nio.file.Paths;
 import java.nio.file.Files;
-import java.io.File;
 
 
 
@@ -15,13 +14,6 @@ public class Java_XSS implements Runnable {
     private JPanel dbPanel = new JPanel();
     private JLabel dbLabel = new JLabel("loading or access error");
     
-    String wdPath = "";
-    
-    public void setPath(String path){
-        wdPath = path;
-        System.out.println("setPath: path=" + path + " , wdPath = " + wdPath);
-    }
-    
     public void run() {
         try {
         dbFrame.add(dbPanel);
@@ -29,13 +21,10 @@ public class Java_XSS implements Runnable {
         dbFrame.setSize(200,300);
                 String html;
         dbFrame.setVisible(true);
-            System.out.println("Database handler starting thread ID " + Thread.currentThread().getId());
         
         while(true){
             
-            
-            
-            Scanner in = new Scanner(new FileReader(wdPath + "/postback.csv"));
+            Scanner in = new Scanner(new FileReader("/Applications/XAMPP/htdocs/postback.csv"));
             in.useDelimiter(",");
 
             
@@ -45,8 +34,8 @@ public class Java_XSS implements Runnable {
             }
             html = html + "</html>";
             dbLabel.setText(html);
-            //System.out.println(html);
-            //System.out.println(Thread.currentThread().getId());
+            System.out.println(html);
+            System.out.println(Thread.currentThread().getId());
             in.close();
             Thread.sleep(200);
             
@@ -55,7 +44,6 @@ public class Java_XSS implements Runnable {
         catch(IOException e) {
             System.out.println("Caught IOException, printing stacktrace...");
             e.printStackTrace();
-            System.exit(-1);
             
         }
         //catch(FileNotFoundException e) {
@@ -74,30 +62,12 @@ public class Java_XSS implements Runnable {
     
     
     public static void main(String args[] ) {
-        ImageIcon javaXssIcon = new ImageIcon("Java_XSS/JX.png");
+        Thread postbackDatabaseDialogThread = new Thread(new Java_XSS());
+        postbackDatabaseDialogThread.start();
+        
         
         JFrame wdLocationFrame = new JFrame("Java XSS:Working Directory");
         String wd = JOptionPane.showInputDialog(wdLocationFrame, "Enter working directory path: ");
-        
-        //check wether files exist, if not create them
-        try{
-        File postbackCsvFile = new File(wd + "/postback.csv");
-        if(!postbackCsvFile.exists()){
-            Files.write(Paths.get(wd + "/postback.csv"), "".getBytes());
-            System.out.println("Creating file " + wd + "/postback.csv");
-        }
-        }
-        catch(IOException e){
-            System.out.println("ioexception");
-        }
-        
-        
-        
-        
-        Java_XSS postbackDatabaseThreadObject = new Java_XSS();
-        postbackDatabaseThreadObject.setPath(wd);
-        Thread postbackDatabaseThread = new Thread(postbackDatabaseThreadObject);
-        postbackDatabaseThread.start();
         
         
         JFrame executingFrame = new JFrame("Java XSS: Executing command");
@@ -112,22 +82,7 @@ public class Java_XSS implements Runnable {
             while(true){
         
         JFrame commandInputDialog = new JFrame("Java XSS");
-                commandInputDialog.setDefaultLookAndFeelDecorated(true);
-          
-        
-                
-                
-                
-                
-        String command = JOptionPane.showInputDialog(commandInputDialog,"Enter command", javaXssIcon);
-        
-        
-                
-        if(command == null){
-            System.out.println("Cancel pressed, exiting...");
-            System.exit(0);
-        }
-        System.out.println(command);
+        String command = JOptionPane.showInputDialog(commandInputDialog,"Enter command");
         executingLabel.setText("Executing: " + command);
         executingFrame.setLocationRelativeTo(null);
         executingFrame.setVisible(true);
