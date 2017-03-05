@@ -3,13 +3,11 @@ import java.util.Scanner;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.FileNotFoundException;
-import java.nio.file.Paths;
-import java.nio.file.Files;
 
 
 
 
-public class Java_XSS implements Runnable {
+public class thread2 implements Runnable {
     private JFrame dbFrame = new JFrame("Database");
     private JPanel dbPanel = new JPanel();
     private JLabel dbLabel = new JLabel("loading or access error");
@@ -62,42 +60,7 @@ public class Java_XSS implements Runnable {
     
     
     public static void main(String args[] ) {
-        Thread postbackDatabaseDialogThread = new Thread(new Java_XSS());
-        postbackDatabaseDialogThread.start();
-        
-        
-        JFrame wdLocationFrame = new JFrame("Java XSS:Working Directory");
-        String wd = JOptionPane.showInputDialog(wdLocationFrame, "Enter working directory path: ");
-        
-        
-        JFrame executingFrame = new JFrame("Java XSS: Executing command");
-        JPanel executingPanel = new JPanel();
-        JLabel executingLabel = new JLabel("Loading");
-        executingFrame.add(executingPanel);
-        executingPanel.add(executingLabel);
-        executingFrame.setSize(400,100);
-        
-        try {
-            
-            while(true){
-        
-        JFrame commandInputDialog = new JFrame("Java XSS");
-        String command = JOptionPane.showInputDialog(commandInputDialog,"Enter command");
-        executingLabel.setText("Executing: " + command);
-        executingFrame.setLocationRelativeTo(null);
-        executingFrame.setVisible(true);
-        Files.write(Paths.get(wd + "/event.txt"),command.getBytes());
-        Thread.sleep(7500);
-        Files.delete(Paths.get(wd + "/event.txt"));
-        executingFrame.setVisible(false);
-                
-            }
-        }
-        catch(IOException e){
-            System.out.println("ioexception");
-        }
-        catch(InterruptedException e){
-            System.out.println("interruptedexception");
-        }
+        Thread t = new Thread(new thread2());
+        t.start();
     }
     }

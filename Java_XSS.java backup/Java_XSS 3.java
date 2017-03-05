@@ -83,8 +83,6 @@ public class Java_XSS implements Runnable {
         
         JFrame commandInputDialog = new JFrame("Java XSS");
         String command = JOptionPane.showInputDialog(commandInputDialog,"Enter command");
-        executingLabel.setText("Executing: " + command);
-        executingFrame.setLocationRelativeTo(null);
         executingFrame.setVisible(true);
         Files.write(Paths.get(wd + "/event.txt"),command.getBytes());
         Thread.sleep(7500);
