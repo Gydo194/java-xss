@@ -74,7 +74,10 @@ public class Java_XSS implements Runnable {
     
     
     public static void main(String args[] ) {
-        ImageIcon javaXssIcon = new ImageIcon("Java_XSS/JX.png");
+     //  ImageIcon javaXssIcon = new ImageIcon("/Users/gydokosten/Desktop/java-xss/Java_XSS/JX.png");
+        
+       
+       
         
         JFrame wdLocationFrame = new JFrame("Java XSS:Working Directory");
         String wd = JOptionPane.showInputDialog(wdLocationFrame, "Enter working directory path: ");
@@ -108,7 +111,12 @@ public class Java_XSS implements Runnable {
         executingFrame.setSize(400,100);
         
         try {
-            
+            File ackDel = new File(wd + "/ack");
+            if(ackDel.exists()){
+                Files.delete(Paths.get(wd + "/ack"));
+                System.out.println("Found ackfile. deleting it.");
+            }
+          
             while(true){
         
         JFrame commandInputDialog = new JFrame("Java XSS");
@@ -118,8 +126,8 @@ public class Java_XSS implements Runnable {
                 
                 
                 
-                
-        String command = JOptionPane.showInputDialog(commandInputDialog,"Enter command", javaXssIcon);
+        //  ImageIcon javaXssIcon = new ImageIcon(getClass().getResource("/Users/gydokosten/Desktop/java-xss/Java_XSS/JX.png"));
+                String command = JOptionPane.showInputDialog(commandInputDialog,"Enter command");
         
         
                 
@@ -132,7 +140,11 @@ public class Java_XSS implements Runnable {
         executingFrame.setLocationRelativeTo(null);
         executingFrame.setVisible(true);
         Files.write(Paths.get(wd + "/event.txt"),command.getBytes());
-        Thread.sleep(7500);
+                File ackfile = new File(wd + "/ack");
+                while(!ackfile.exists()){
+                    Thread.sleep(200);
+                }
+        Files.delete(Paths.get(wd + "/ack"));
         Files.delete(Paths.get(wd + "/event.txt"));
         executingFrame.setVisible(false);
                 
