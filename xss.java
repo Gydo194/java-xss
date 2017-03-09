@@ -1,3 +1,17 @@
+/*
+ 
+OLD handler application.
+I strongly reccomend to use the GUI tool (Java_XSS.java).
+If time permits I will add a CLI only implementation of this system later.
+But, feel free to code your own.
+ 
+ 
+ 
+ 
+ 
+ 
+ */
+
 import java.io.IOException;
 import java.io.Console;
 import java.nio.file.Files;
